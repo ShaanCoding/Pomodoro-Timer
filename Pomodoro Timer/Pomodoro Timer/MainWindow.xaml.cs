@@ -40,9 +40,16 @@ namespace Pomodoro_Timer
 
 
         private int pomodoroCount = 0;
-        private bool startStopBool = false;
+        private startStopRestartEnum startStopBool = startStopRestartEnum.start;
         private int time;
         DispatcherTimer Timer;
+
+        private enum startStopRestartEnum
+        {
+            start,
+            stop,
+            restart,
+        }
 
         public MainWindow()
         {
@@ -72,14 +79,14 @@ namespace Pomodoro_Timer
 
                 pomodoroCount++;
                 Timer.Stop();
-                startPauseButton.Content = "Play";
-                startStopBool = false;
+                startPauseButton.Content = "OK";
+                startStopBool = startStopRestartEnum.restart;
             }
         }
 
         private void startPauseButton_Click(object sender, RoutedEventArgs e)
         {
-            if(startStopBool == false)
+            if(startStopBool == startStopRestartEnum.start)
             {
                 if(pomodoroCount < pomodoroLongBreakOccurance / 2)
                 {
@@ -103,29 +110,29 @@ namespace Pomodoro_Timer
 
                 Timer.Start();
                 startPauseButton.Content = "Pause";
-                startStopBool = true;
+                startStopBool = startStopRestartEnum.stop;
             }
-            else
+            else if (startStopBool == startStopRestartEnum.restart)
             {
                 alarmSoundsOGG.Stop("alarmSounds");
                 startPauseButton.Content = "Pause";
-                startStopBool// =; //StartupEventArgs;
+                startStopBool = startStopRestartEnum.start;
             }
-            else
+            else if (startStopBool==startStopRestartEnum.stop)
             {
                 workingSoundsOGG.Stop("workingSounds");
                 alarmSoundsOGG.Stop("alarmSounds");
 
                 Timer.Stop();
                 startPauseButton.Content = "Play";
-                startStopBool = false;
+                startStopBool = startStopRestartEnum.start;
             }
 
         }
 
         private void restartButton_Click(object sender, RoutedEventArgs e)
         {
-            if(startStopBool == true)
+            if(startStopBool == startStopRestartEnum.stop)
             {
                 alarmSoundsOGG.Stop("alarmSounds");
                 workingSoundsOGG.Stop("workingSounds");
@@ -134,7 +141,7 @@ namespace Pomodoro_Timer
                 Timer.Stop();
                 countdownTimer.Content = FormatTimer(pomodoroDuration);
 
-                startStopBool = false;
+                startStopBool = startStopRestartEnum.start;
                 startPauseButton.Content = "Play";
             }
         }
