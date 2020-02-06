@@ -1,0 +1,15 @@
+﻿<Window x:Name="Pomodoro_Tmer" x:Class="Pomodoro_Timer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pomodoro_Timer"
+        mc:Ignorable="d"
+        Title="Pomodoro Tmer" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="countdownTimer" Content="CDT" HorizontalAlignment="Left" Margin="272,44,0,0" VerticalAlignment="Top" FontFamily="Bavro" FontSize="100"/>
+        <Button x:Name="startPauseButton" Content="Play" HorizontalAlignment="Left" Margin="84,314,0,0" VerticalAlignment="Top" Width="155" Height="42" Click="startPauseButton_Click"/>
+        <Button x:Name="settingsButton" Content="Settings" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="74" Click="settingsButton_Click"/>
+        <Button x:Name="restartButton" Content="Restart" HorizontalAlignment="Left" Margin="310,314,0,0" VerticalAlignment="Top" Width="164" Height="42" Click="restartButton_Click"/>
+    </Grid>
+</Window>
