@@ -82,21 +82,30 @@ namespace Pomodoro_Timer
         {
             if(startStopBool == startStopRestartEnum.start)
             {
-                if(pomodoroCount < pomodoroLongBreakOccurance / 2)
+                if(pomodoroCount < pomodoroLongBreakOccurance * 2 + 1)
                 {
                     if(pomodoroCount % 2 == 0)
                     {
+                        startPauseButton.Visibility = Visibility.Visible;
+                        restartButton.Visibility = Visibility.Visible;
+                        doneBreakButton.Visibility = Visibility.Collapsed;
                         time = pomodoroDuration;
                     }
                     else
                     {
+                        startPauseButton.Visibility = Visibility.Collapsed;
+                        restartButton.Visibility = Visibility.Collapsed;
+                        doneBreakButton.Visibility = Visibility.Visible;
                         time = pomodoroBreak;
                     }
                 }
                 else
                 {
+                    startPauseButton.Visibility = Visibility.Collapsed;
+                    restartButton.Visibility = Visibility.Collapsed;
+                    doneBreakButton.Visibility = Visibility.Visible;
                     time = pomodoroLongBreak;
-                    pomodoroCount = 0;
+                    pomodoroCount = -1;
                 }
 
                 workingSoundsOGG.Play("workingSounds");
@@ -104,7 +113,6 @@ namespace Pomodoro_Timer
                 Timer.Start();
                 startPauseButton.Content = "Pause";
                 startStopBool = startStopRestartEnum.stop;
-                restartButton.Visibility = Visibility.Visible;
             }
             else if (startStopBool == startStopRestartEnum.restart)
             {
@@ -123,7 +131,6 @@ namespace Pomodoro_Timer
                 startStopBool = startStopRestartEnum.start;
                 restartButton.Visibility = Visibility.Collapsed;
             }
-
         }
 
         private void restartButton_Click(object sender, RoutedEventArgs e)
@@ -140,6 +147,24 @@ namespace Pomodoro_Timer
                 startStopBool = startStopRestartEnum.start;
                 startPauseButton.Content = "Play";
                 restartButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void doneBreakButton_Click(object sender, RoutedEventArgs e)
+        {
+            alarmSoundsOGG.Stop("alarmSounds");
+            workingSoundsOGG.Stop("workingSounds");
+            Timer.Stop();
+            countdownTimer.Content = FormatTimer(pomodoroDuration);
+
+            startStopBool = startStopRestartEnum.start;
+            startPauseButton.Content = "Play";
+            doneBreakButton.Visibility = Visibility.Collapsed;
+            startPauseButton.Visibility = Visibility.Visible;
+
+            if (time > 0)
+            {
+                pomodoroCount++;
             }
         }
 
@@ -174,7 +199,5 @@ namespace Pomodoro_Timer
                 }
             }
         }
-
- 
     }
 }
