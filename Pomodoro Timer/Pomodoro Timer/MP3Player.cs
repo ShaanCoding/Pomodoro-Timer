@@ -9,7 +9,7 @@ namespace Pomodoro_Timer
 {
     public class MP3Player
     {
-        readonly bool repeat = true;
+        readonly static bool repeat = true;
 
         public MP3Player(string fileName, string alias)
         {
