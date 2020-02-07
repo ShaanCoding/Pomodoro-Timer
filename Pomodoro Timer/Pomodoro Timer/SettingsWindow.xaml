@@ -1,62 +1,83 @@
-﻿<Window x:Class="Pomodoro_Timer.SettingsWindow"
+﻿<Window x:Name="SettingsWindow1" x:Class="Pomodoro_Timer.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pomodoro_Timer"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="450" Width="800">
+        Title="Settings Window" Height="450" Width="800" MinWidth="800" MinHeight="450">
     <Grid>
-        <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Left" Margin="623,392,0,0" VerticalAlignment="Top" Width="76" Click="applyButton_Click"/>
-        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="704,392,0,0" VerticalAlignment="Top" Width="76" Click="cancelButton_Click"/>
-        <ComboBox x:Name="pomodoroDurationCombobox" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="234"/>
-        <ComboBox x:Name="pomodoroBreakCombobox" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="234"/>
-        <ComboBox x:Name="pomodoroLongBreakCombobox" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="221"/>
-        <ComboBox x:Name="pomodoroLongBreakOccuranceCombobox" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="226" RenderTransformOrigin="0.137,-1.636"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <StackPanel x:Name="alarmSoundsPanel">
-            <RadioButton x:Name="AlarmBeep" GroupName="alarmSounds" Content="AlarmBeep" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="applyButton_Click" Grid.Column="1" Grid.Row="3" Height="20" Margin="0,13,120.5,13.5"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="cancelButton_Click" Grid.Column="1" Grid.Row="3" Height="20" Margin="0,13,10.5,13.5"/>
+
+        <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2" Rows="2" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
+            <Label Content="Pomodoro Length" FontFamily="Calibri" FontWeight="Bold" FontSize="14" Foreground="#FF635F5F"></Label>
+            <ComboBox x:Name="pomodoroDurationCombobox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250"/>
+            <Label Content="Short Break Length" FontFamily="Calibri" FontWeight="Bold" FontSize="14" Foreground="#FF635F5F"></Label>
+            <ComboBox x:Name="pomodoroBreakCombobox" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="250"/>
+            <Label Content="Long Break Length" FontFamily="Calibri" FontWeight="Bold" FontSize="14" Foreground="#FF635F5F"></Label>
+            <ComboBox x:Name="pomodoroLongBreakCombobox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250"/>
+            <Label Content="Long Break After" FontFamily="Calibri" FontWeight="Bold" FontSize="14" Foreground="#FF635F5F"></Label>
+            <ComboBox x:Name="pomodoroLongBreakOccuranceCombobox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.137,-1.636"/>
+        </UniformGrid>
+
+        <Label Content="Alarm" Grid.Row="1" Grid.Column="1" Foreground="#FFFF4F4F" FontSize="16" FontWeight="Bold" FontFamily="Calibri"></Label>
+        <UniformGrid x:Name="alarmSoundsPanel" Grid.Row="1" Grid.Column="1" Columns="4" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,26.5,0,14">
+            <RadioButton x:Name="AlarmBeep" GroupName="alarmSounds" Content="Alarm Beep" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Beeps" GroupName="alarmSounds" Content="Beeps" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="Bell1" GroupName="alarmSounds" Content="Bell1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="Bell2" GroupName="alarmSounds" Content="Bell2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="BicycleBell" GroupName="alarmSounds" Content="BicycleBell" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="Bell1" GroupName="alarmSounds" Content="Bell 1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="Bell2" GroupName="alarmSounds" Content="Bell 2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="BicycleBell" GroupName="alarmSounds" Content="Bicycle Bell" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="BirdCall" GroupName="alarmSounds" Content="Birdcall" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="CarHorn" GroupName="alarmSounds" Content="CarHorn" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="ClownHorn" GroupName="alarmSounds" Content="ClownHorn" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="CockCrow" GroupName="alarmSounds" Content="CockCrow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="CarHorn" GroupName="alarmSounds" Content="Car Horn" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="ClownHorn" GroupName="alarmSounds" Content="Clown Horn" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="CockCrow" GroupName="alarmSounds" Content="Cock Crow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Cuckoo" GroupName="alarmSounds" Content="Cuckoo" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="DrumCymbalCrash" GroupName="alarmSounds" Content="DrumCymbalCrash" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="DrumCymbalCrash" GroupName="alarmSounds" Content="Drum Cymbal Crash" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="FanFare" GroupName="alarmSounds" Content="Fanfare" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="Music1" GroupName="alarmSounds" Content="Music1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="Music2" GroupName="alarmSounds" Content="Music2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="Music3" GroupName="alarmSounds" Content="Music3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="PartyHorn" GroupName="alarmSounds" Content="PartyHorn" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="Music1" GroupName="alarmSounds" Content="Music 1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="Music2" GroupName="alarmSounds" Content="Music 2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="Music3" GroupName="alarmSounds" Content="Music 3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="PartyHorn" GroupName="alarmSounds" Content="Party Horn" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Percussion" GroupName="alarmSounds" Content="Percussion" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="PianoMusic" GroupName="alarmSounds" Content="PianoMusic" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="RingTone" GroupName="alarmSounds" Content="RingTone" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="PianoMusic" GroupName="alarmSounds" Content="Piano Music" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="RingTone" GroupName="alarmSounds" Content="Ring Tone" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Satellite" GroupName="alarmSounds" Content="Satellite" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="SchoolBell" GroupName="alarmSounds" Content="SchoolBell" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="ToyNoisemakerHonk" GroupName="alarmSounds" Content="ToyNoisemakerHonk" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="SchoolBell" GroupName="alarmSounds" Content="School Bell" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="ToyNoisemakerHonk" GroupName="alarmSounds" Content="Toy Noisemaker Honk" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Victory" GroupName="alarmSounds" Content="Victory" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Whistle" GroupName="alarmSounds" Content="Whistle" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="WindChimes" GroupName="alarmSounds" Content="WindChimes" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="WindUp" GroupName="alarmSounds" Content="WindUp" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        </StackPanel>
+            <RadioButton x:Name="WindChimes" GroupName="alarmSounds" Content="Wind Chimes" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="WindUp" GroupName="alarmSounds" Content="Wind Up" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </UniformGrid>
 
-        <StackPanel Name="workingSoundsPanel" Margin="300 0">
+        <Label Content="Background Noise" Grid.Row="2" Grid.Column="1" Foreground="#FFFF4F4F" FontSize="16" FontWeight="Bold" FontFamily="Calibri"></Label>
+        <UniformGrid Name="workingSoundsPanel" Grid.Row="2" Grid.Column="1" Columns="4" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,29,0,18.5">
             <RadioButton x:Name="Classroom" GroupName="workingSounds" Content="Classroom" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="CofficeShop" GroupName="workingSounds" Content="CofficeShop" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="FastTicking" GroupName="workingSounds" Content="FastTicking" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="FireBurning" GroupName="workingSounds" Content="FireBurning" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="CofficeShop" GroupName="workingSounds" Content="Coffee Shop" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="FastTicking" GroupName="workingSounds" Content="Fast Ticking" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="FireBurning" GroupName="workingSounds" Content="Fire Burning" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Library" GroupName="workingSounds" Content="Library" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Mute" GroupName="workingSounds" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="OceanShore" GroupName="workingSounds" Content="OceanShore" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="OceanShore" GroupName="workingSounds" Content="Ocean Shore" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Rain" GroupName="workingSounds" Content="Rain" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Stream" GroupName="workingSounds" Content="Stream" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Ticking" GroupName="workingSounds" Content="Ticking" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Wilderness" GroupName="workingSounds" Content="Wilderness" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="WindThroughTrees" GroupName="workingSounds" Content="WindThroughTrees" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="WindWithCrickets" GroupName="workingSounds" Content="WindWithCrickets" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        </StackPanel>
+            <RadioButton x:Name="WindThroughTrees" GroupName="workingSounds" Content="Wind Through Trees" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <RadioButton x:Name="WindWithCrickets" GroupName="workingSounds" Content="Wind With Crickets" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </UniformGrid>
     </Grid>
 </Window>

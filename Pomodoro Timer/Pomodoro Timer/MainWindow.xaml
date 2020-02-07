@@ -5,33 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pomodoro_Timer"
         mc:Ignorable="d"
-        Title="Pomodoro Tmer" Height="450" Width="800">
+        Title="Pomodoro Tmer" Height="450" Width="800" MinWidth="800" MinHeight="450">
+
+    <Window.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
         </Grid.RowDefinitions>
         
         <Label x:Name="countdownTimer" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bavro" FontSize="100" Grid.Row="1" Foreground="White"/>
-        <Button x:Name="settingsButton" Content="Settings" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Click="settingsButton_Click" Margin="10,10,0,75" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="45">
+        <Button Style="{StaticResource MyButtonStyle}" x:Name="settingsButton" Content="Settings" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Click="settingsButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="45" Margin="15,16,0,16">
             <Button.Background>
-                <ImageBrush ImageSource="Assets/Buttons/setting-general.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="Assets/Buttons/setting-general.png" Stretch="UniformToFill">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.95" ScaleY="0.95"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
             </Button.Background>
         </Button>
         <WrapPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="startPauseButton" Content="Play" Width="60" Height="60" Click="startPauseButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button Style="{StaticResource MyButtonStyle}" x:Name="startPauseButton" Content="Play" Width="60" Height="60" Click="startPauseButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" Foreground="{x:Null}">
                 <Button.Background>
                     <ImageBrush ImageSource="Assets/Buttons/timer-start-big.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="restartButton" Content="Restart" Width="60" Height="60" Click="restartButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Visibility="Collapsed" >
+            <Button Style="{StaticResource MyButtonStyle}" x:Name="restartButton" Content="Restart" Width="60" Height="60" Click="restartButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Visibility="Collapsed" >
                 <Button.Background>
                     <ImageBrush ImageSource="Assets/Buttons/timer-stop-big.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
         </WrapPanel>
-        <Button x:Name="doneBreakButton" Content="Done Break" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Click="doneBreakButton_Click" Grid.Row="2" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="60" Visibility="Collapsed">
+        <Button Style="{StaticResource MyButtonStyle}" x:Name="doneBreakButton" Content="Done Break" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Click="doneBreakButton_Click" Grid.Row="2" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="60" Visibility="Collapsed">
             <Button.Background>
                 <ImageBrush ImageSource="Assets/Buttons/timer-complete-big.png" Stretch="UniformToFill"/>
             </Button.Background>

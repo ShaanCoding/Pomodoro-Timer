@@ -111,11 +111,21 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Buttons\timer-complete-big.png" />
-    <Resource Include="Assets\Buttons\timer-pause-big.png" />
-    <Resource Include="Assets\Buttons\timer-start-big.png" />
-    <Resource Include="Assets\Buttons\timer-stop-big.png" />
-    <Resource Include="Assets\Buttons\setting-general.png" />
+    <Resource Include="Assets\Buttons\timer-complete-big.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Buttons\timer-pause-big.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Buttons\timer-start-big.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Buttons\timer-stop-big.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Buttons\setting-general.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Assets\Sounds\alarmSounds\alm_AlarmBeep.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

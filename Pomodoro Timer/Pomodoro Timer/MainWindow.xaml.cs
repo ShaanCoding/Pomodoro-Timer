@@ -203,28 +203,8 @@ namespace Pomodoro_Timer
 
         private static string FormatTimer(int time)
         {
-            if (time / 60 < 10)
-            {
-                if (time % 60 < 10)
-                {
-                    return string.Format("0{0}:0{1}", time / 60, time % 60);
-                }
-                else
-                {
-                    return string.Format("0{0}:{1}", time / 60, time % 60);
-                }
-            }
-            else
-            {
-                if (time % 60 < 10)
-                {
-                    return string.Format("{0}:0{1}", time / 60, time % 60);
-                }
-                else
-                {
-                    return string.Format("{0}:{1}", time / 60, time % 60);
-                }
-            }
+            TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+            return timeSpan.ToString(@"hh\:mm\:ss");
         }
     }
 }
