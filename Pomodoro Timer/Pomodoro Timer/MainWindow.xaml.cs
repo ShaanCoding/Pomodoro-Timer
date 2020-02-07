@@ -27,11 +27,11 @@ namespace Pomodoro_Timer
         public static int pomodoroBreak = Properties.Settings.Default.pomodoroBreak; //5 * 60; 480 max
         public static int pomodoroLongBreak = Properties.Settings.Default.pomodoroLongBreak; //15 * 60; 480 max
         public static int pomodoroLongBreakOccurance = Properties.Settings.Default.pomodoroLongBreakOccurance; // 100 max
-        public static string workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\bgm_" + Properties.Settings.Default.workingSounds + ".ogg";
-        public static string alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\alm_" + Properties.Settings.Default.alarmSounds + ".ogg";
+        public static string workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\bgm_" + Properties.Settings.Default.workingSounds + ".mp3";
+        public static string alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\alm_" + Properties.Settings.Default.alarmSounds + ".mp3";
 
-        private static OggPlayer alarmSoundsOGG;
-        private static OggPlayer workingSoundsOGG;
+        public static OggPlayer alarmSoundsOGG;
+        public static OggPlayer workingSoundsOGG;
         private int pomodoroCount = 0;
         private startStopRestartEnum startStopBool = startStopRestartEnum.start;
         private int time;

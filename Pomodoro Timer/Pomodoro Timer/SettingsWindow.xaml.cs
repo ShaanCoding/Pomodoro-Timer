@@ -79,8 +79,10 @@ namespace Pomodoro_Timer
             MainWindow.pomodoroBreak = Properties.Settings.Default.pomodoroBreak; //5 * 60; 480 max
             MainWindow.pomodoroLongBreak = Properties.Settings.Default.pomodoroLongBreak; //15 * 60; 480 max
             MainWindow.pomodoroLongBreakOccurance = Properties.Settings.Default.pomodoroLongBreakOccurance; // 100 max
-            MainWindow.workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\bgm_" + Properties.Settings.Default.workingSounds + ".ogg";
-            MainWindow.alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\alm_" + Properties.Settings.Default.alarmSounds + ".ogg";
+            MainWindow.workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\bgm_" + Properties.Settings.Default.workingSounds + ".mp3";
+            MainWindow.alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\alm_" + Properties.Settings.Default.alarmSounds + ".mp3";
+            MainWindow.workingSoundsOGG = new OggPlayer(MainWindow.workingSounds, "workingSounds");
+            MainWindow.alarmSoundsOGG = new OggPlayer(MainWindow.alarmSounds, "alarmSounds");
             this.Close();
         }
 
