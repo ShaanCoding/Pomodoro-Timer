@@ -41,7 +41,21 @@ namespace Pomodoro_Timer
             pomodoroBreakCombobox.SelectedIndex = Properties.Settings.Default.pomodoroBreak - 1;
             pomodoroLongBreakCombobox.SelectedIndex = Properties.Settings.Default.pomodoroLongBreak - 1;
             pomodoroLongBreakOccuranceCombobox.SelectedIndex = Properties.Settings.Default.pomodoroLongBreakOccurance - 1;
-            //add song
+
+            //select one of those thingys
+            var checkedValueAlarmSounds = alarmSoundsPanel.Children.OfType<RadioButton>()
+            .FirstOrDefault(r => r.Name.Equals(Properties.Settings.Default.alarmSounds));
+            if(checkedValueAlarmSounds != null)
+            {
+                checkedValueAlarmSounds.IsChecked = true;
+            }
+
+            var checkedValueWorkingSounds = workingSoundsPanel.Children.OfType<RadioButton>()
+            .FirstOrDefault(r => r.Name.Equals(Properties.Settings.Default.workingSounds));
+            if (checkedValueWorkingSounds != null)
+            {
+                checkedValueWorkingSounds.IsChecked = true;
+            }
         }
 
         private void applyButton_Click(object sender, RoutedEventArgs e)
@@ -50,14 +64,23 @@ namespace Pomodoro_Timer
             Properties.Settings.Default.pomodoroBreak = pomodoroBreakCombobox.SelectedIndex + 1;
             Properties.Settings.Default.pomodoroLongBreak = pomodoroLongBreakCombobox.SelectedIndex + 1;
             Properties.Settings.Default.pomodoroLongBreakOccurance = pomodoroLongBreakOccuranceCombobox.SelectedIndex + 1;
-            //add songs
+
+            var checkedValueAlarmSounds = alarmSoundsPanel.Children.OfType<RadioButton>()
+            .FirstOrDefault(r => r.IsChecked.HasValue && r.IsChecked.Value);
+            Properties.Settings.Default.alarmSounds = checkedValueAlarmSounds.Name;
+
+            var checkedValueWorkingSounds = workingSoundsPanel.Children.OfType<RadioButton>()
+            .FirstOrDefault(r => r.IsChecked.HasValue && r.IsChecked.Value);
+            Properties.Settings.Default.workingSounds = checkedValueWorkingSounds.Name;
+
             Properties.Settings.Default.Save();
 
-            MainWindow.pomodoroDuration = pomodoroDurationCombobox.SelectedIndex + 1; ;
-            MainWindow.pomodoroBreak = pomodoroBreakCombobox.SelectedIndex + 1; ;
-            MainWindow.pomodoroLongBreak = pomodoroLongBreakCombobox.SelectedIndex + 1; ;
-            MainWindow.pomodoroLongBreakOccurance = pomodoroLongBreakOccuranceCombobox.SelectedIndex + 1;
-
+            MainWindow.pomodoroDuration = Properties.Settings.Default.pomodoroDuration; //25 * 60; 480 max 
+            MainWindow.pomodoroBreak = Properties.Settings.Default.pomodoroBreak; //5 * 60; 480 max
+            MainWindow.pomodoroLongBreak = Properties.Settings.Default.pomodoroLongBreak; //15 * 60; 480 max
+            MainWindow.pomodoroLongBreakOccurance = Properties.Settings.Default.pomodoroLongBreakOccurance; // 100 max
+            MainWindow.workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\bgm_" + Properties.Settings.Default.workingSounds + ".ogg";
+            MainWindow.alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\alm_" + Properties.Settings.Default.alarmSounds + ".ogg";
             this.Close();
         }
 
