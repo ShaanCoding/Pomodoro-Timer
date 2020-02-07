@@ -7,10 +7,18 @@
         mc:Ignorable="d"
         Title="Pomodoro Tmer" Height="450" Width="800">
     <Grid>
-        <Label x:Name="countdownTimer" Content="CDT" HorizontalAlignment="Left" Margin="272,44,0,0" VerticalAlignment="Top" FontFamily="Bavro" FontSize="100"/>
-        <Button x:Name="startPauseButton" Content="Play" HorizontalAlignment="Left" Margin="84,314,0,0" VerticalAlignment="Top" Width="155" Height="42" Click="startPauseButton_Click"/>
-        <Button x:Name="settingsButton" Content="Settings" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="74" Click="settingsButton_Click"/>
-        <Button x:Name="restartButton" Content="Restart" HorizontalAlignment="Left" Margin="310,314,0,0" VerticalAlignment="Top" Width="164" Height="42" Click="restartButton_Click" Visibility="Collapsed"/>
-        <Button x:Name="doneBreakButton" Content="Done Break" HorizontalAlignment="Left" Margin="382,332,0,0" VerticalAlignment="Top" Width="74" Click="doneBreakButton_Click" Visibility="Collapsed"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Label x:Name="countdownTimer" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bavro" FontSize="100" Grid.Row="1" Foreground="White"/>
+        <Button x:Name="settingsButton" Content="Settings" HorizontalAlignment="Left" VerticalAlignment="Center" Width="74" Click="settingsButton_Click" Margin="20,20,0,20.5"/>
+        <WrapPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="startPauseButton" Content="Play" Width="155" Height="42" Click="startPauseButton_Click"/>
+            <Button x:Name="restartButton" Content="Restart" Width="164" Height="42" Click="restartButton_Click" Visibility="Collapsed"/>
+        </WrapPanel>
+        <Button x:Name="doneBreakButton" Content="Done Break" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Click="doneBreakButton_Click" Visibility="Collapsed" Grid.Row="2"/>
     </Grid>
 </Window>

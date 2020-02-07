@@ -22,16 +22,28 @@ namespace Pomodoro_Timer
     /// </summary>
     public partial class MainWindow : Window
     {
+        LinearGradientBrush workingGradient = new LinearGradientBrush(
+            Color.FromArgb(255, 255, 100, 55),
+            Color.FromArgb(255, 251, 68, 116),
+            new Point(0, 0),
+            new Point(0.55, 0.52));
+
+        LinearGradientBrush breakGradient = new LinearGradientBrush(
+            Color.FromArgb(255, 23, 232, 217),
+            Color.FromArgb(255, 94, 124, 234),
+            new Point(0, 0),
+            new Point(0.74, 0.73));
+
         //Saved user settings
-        public static int pomodoroDuration = Properties.Settings.Default.pomodoroDuration; //25 * 60; 480 max 
-        public static int pomodoroBreak = Properties.Settings.Default.pomodoroBreak; //5 * 60; 480 max
-        public static int pomodoroLongBreak = Properties.Settings.Default.pomodoroLongBreak; //15 * 60; 480 max
+        public static int pomodoroDuration = Properties.Settings.Default.pomodoroDuration * 60; //25 * 60; 480 max 
+        public static int pomodoroBreak = Properties.Settings.Default.pomodoroBreak * 60; //5 * 60; 480 max
+        public static int pomodoroLongBreak = Properties.Settings.Default.pomodoroLongBreak * 60; //15 * 60; 480 max
         public static int pomodoroLongBreakOccurance = Properties.Settings.Default.pomodoroLongBreakOccurance; // 100 max
         public static string workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\bgm_" + Properties.Settings.Default.workingSounds + ".mp3";
         public static string alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\alm_" + Properties.Settings.Default.alarmSounds + ".mp3";
 
-        public static OggPlayer alarmSoundsOGG;
-        public static OggPlayer workingSoundsOGG;
+        public static MP3Player alarmSoundsOGG;
+        public static MP3Player workingSoundsOGG;
         private int pomodoroCount = 0;
         private startStopRestartEnum startStopBool = startStopRestartEnum.start;
         private int time;
@@ -42,14 +54,18 @@ namespace Pomodoro_Timer
             start,
             stop,
             restart,
+            resume,
         }
 
         public MainWindow()
         {
             InitializeComponent();
+            this.Background = workingGradient;
+            time = pomodoroDuration;
+            countdownTimer.Content = FormatTimer(time);
 
-            workingSoundsOGG = new OggPlayer(workingSounds, "workingSounds");
-            alarmSoundsOGG = new OggPlayer(alarmSounds, "alarmSounds");
+            workingSoundsOGG = new MP3Player(workingSounds, "workingSounds");
+            alarmSoundsOGG = new MP3Player(alarmSounds, "alarmSounds");
             workingSoundsOGG.Volume("workingSounds", 1000);
             alarmSoundsOGG.Volume("alarmSounds", 1000);
 
@@ -86,6 +102,7 @@ namespace Pomodoro_Timer
                 {
                     if(pomodoroCount % 2 == 0)
                     {
+                        this.Background = workingGradient;
                         startPauseButton.Visibility = Visibility.Visible;
                         restartButton.Visibility = Visibility.Visible;
                         doneBreakButton.Visibility = Visibility.Collapsed;
@@ -93,6 +110,7 @@ namespace Pomodoro_Timer
                     }
                     else
                     {
+                        this.Background = breakGradient;
                         startPauseButton.Visibility = Visibility.Collapsed;
                         restartButton.Visibility = Visibility.Collapsed;
                         doneBreakButton.Visibility = Visibility.Visible;
@@ -101,6 +119,7 @@ namespace Pomodoro_Timer
                 }
                 else
                 {
+                    this.Background = breakGradient;
                     startPauseButton.Visibility = Visibility.Collapsed;
                     restartButton.Visibility = Visibility.Collapsed;
                     doneBreakButton.Visibility = Visibility.Visible;
@@ -128,8 +147,16 @@ namespace Pomodoro_Timer
 
                 Timer.Stop();
                 startPauseButton.Content = "Play";
-                startStopBool = startStopRestartEnum.start;
+                startStopBool = startStopRestartEnum.resume;
                 restartButton.Visibility = Visibility.Collapsed;
+            }
+            else if(startStopBool == startStopRestartEnum.resume)
+            {
+                workingSoundsOGG.Play("workingSounds");
+                Timer.Start();
+                startPauseButton.Content = "Pause";
+                startStopBool = startStopRestartEnum.stop;
+                restartButton.Visibility = Visibility.Visible;
             }
         }
 

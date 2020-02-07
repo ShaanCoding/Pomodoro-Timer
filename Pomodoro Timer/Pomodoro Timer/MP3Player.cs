@@ -13,6 +13,7 @@ namespace Pomodoro_Timer
 
         public MP3Player(string fileName, string alias)
         {
+            Dispose(alias);
             //open filename then type must be mpegvideo
             const string format = @"open ""{0}"" type mpegvideo alias ""{1}""";
             string command = string.Format(format, fileName, alias);
