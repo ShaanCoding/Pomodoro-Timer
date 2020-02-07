@@ -22,23 +22,16 @@ namespace Pomodoro_Timer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int pomodoroDuration = 10; //25 * 60;
-        private const int pomodoroBreak = 5; //5 * 60;
-        private const int pomodoroLongBreak = 15; //15 * 60;
-        private const int pomodoroLongBreakOccurance = 4;
-        private static string workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\train.mp3";
-        private static OggPlayer workingSoundsOGG;
-        private static string alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\fan.mp3";
+        //Saved user settings
+        public static int pomodoroDuration = Properties.Settings.Default.pomodoroDuration; //25 * 60; 480 max 
+        public static int pomodoroBreak = Properties.Settings.Default.pomodoroBreak; //5 * 60; 480 max
+        public static int pomodoroLongBreak = Properties.Settings.Default.pomodoroLongBreak; //15 * 60; 480 max
+        public static int pomodoroLongBreakOccurance = Properties.Settings.Default.pomodoroLongBreakOccurance; // 100 max
+        public static string workingSounds = Environment.CurrentDirectory + @"\Assets\Sounds\workingSounds\" + Properties.Settings.Default.workingSounds;
+        public static string alarmSounds = Environment.CurrentDirectory + @"\Assets\Sounds\alarmSounds\" + Properties.Settings.Default.alarmSounds;
+
         private static OggPlayer alarmSoundsOGG;
-
-
-
-        private const bool popUpNotification = true;
-
-        private const bool allowResizing = false;
-        private const bool detachFromSYSTray = false;
-
-
+        private static OggPlayer workingSoundsOGG;
         private int pomodoroCount = 0;
         private startStopRestartEnum startStopBool = startStopRestartEnum.start;
         private int time;
@@ -81,6 +74,7 @@ namespace Pomodoro_Timer
                 Timer.Stop();
                 startPauseButton.Content = "OK";
                 startStopBool = startStopRestartEnum.restart;
+                restartButton.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -90,7 +84,6 @@ namespace Pomodoro_Timer
             {
                 if(pomodoroCount < pomodoroLongBreakOccurance / 2)
                 {
-                    //if even i.e no break
                     if(pomodoroCount % 2 == 0)
                     {
                         time = pomodoroDuration;
@@ -111,12 +104,14 @@ namespace Pomodoro_Timer
                 Timer.Start();
                 startPauseButton.Content = "Pause";
                 startStopBool = startStopRestartEnum.stop;
+                restartButton.Visibility = Visibility.Visible;
             }
             else if (startStopBool == startStopRestartEnum.restart)
             {
                 alarmSoundsOGG.Stop("alarmSounds");
-                startPauseButton.Content = "Pause";
+                startPauseButton.Content = "Play";
                 startStopBool = startStopRestartEnum.start;
+                restartButton.Visibility = Visibility.Collapsed;
             }
             else if (startStopBool==startStopRestartEnum.stop)
             {
@@ -126,6 +121,7 @@ namespace Pomodoro_Timer
                 Timer.Stop();
                 startPauseButton.Content = "Play";
                 startStopBool = startStopRestartEnum.start;
+                restartButton.Visibility = Visibility.Collapsed;
             }
 
         }
@@ -143,12 +139,14 @@ namespace Pomodoro_Timer
 
                 startStopBool = startStopRestartEnum.start;
                 startPauseButton.Content = "Play";
+                restartButton.Visibility = Visibility.Collapsed;
             }
         }
 
         private void settingsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Window settingsWindow = new SettingsWindow();
+            settingsWindow.ShowDialog();
         }
 
         private static string FormatTimer(int time)
