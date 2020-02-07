@@ -111,6 +111,11 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Buttons\timer-complete-big.png" />
+    <Resource Include="Assets\Buttons\timer-pause-big.png" />
+    <Resource Include="Assets\Buttons\timer-start-big.png" />
+    <Resource Include="Assets\Buttons\timer-stop-big.png" />
+    <Resource Include="Assets\Buttons\setting-general.png" />
     <Content Include="Assets\Sounds\alarmSounds\alm_AlarmBeep.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -229,5 +234,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

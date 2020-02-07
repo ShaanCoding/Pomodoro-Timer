@@ -130,13 +130,13 @@ namespace Pomodoro_Timer
                 workingSoundsOGG.Play("workingSounds");
 
                 Timer.Start();
-                startPauseButton.Content = "Pause";
+                startPauseButton.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Assets/Buttons/timer-pause-big.png")));
                 startStopBool = startStopRestartEnum.stop;
             }
             else if (startStopBool == startStopRestartEnum.restart)
             {
                 alarmSoundsOGG.Stop("alarmSounds");
-                startPauseButton.Content = "Play";
+                startPauseButton.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Assets/Buttons/timer-start-big.png")));
                 startStopBool = startStopRestartEnum.start;
                 restartButton.Visibility = Visibility.Collapsed;
             }
@@ -146,7 +146,7 @@ namespace Pomodoro_Timer
                 alarmSoundsOGG.Stop("alarmSounds");
 
                 Timer.Stop();
-                startPauseButton.Content = "Play";
+                startPauseButton.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Assets/Buttons/timer-start-big.png")));
                 startStopBool = startStopRestartEnum.resume;
                 restartButton.Visibility = Visibility.Collapsed;
             }
@@ -154,7 +154,7 @@ namespace Pomodoro_Timer
             {
                 workingSoundsOGG.Play("workingSounds");
                 Timer.Start();
-                startPauseButton.Content = "Pause";
+                startPauseButton.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Assets/Buttons/timer-pause-big.png")));
                 startStopBool = startStopRestartEnum.stop;
                 restartButton.Visibility = Visibility.Visible;
             }
@@ -172,7 +172,7 @@ namespace Pomodoro_Timer
                 countdownTimer.Content = FormatTimer(pomodoroDuration);
 
                 startStopBool = startStopRestartEnum.start;
-                startPauseButton.Content = "Play";
+                startPauseButton.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Assets/Buttons/timer-start-big.png")));
                 restartButton.Visibility = Visibility.Collapsed;
             }
         }
@@ -185,7 +185,7 @@ namespace Pomodoro_Timer
             countdownTimer.Content = FormatTimer(pomodoroDuration);
 
             startStopBool = startStopRestartEnum.start;
-            startPauseButton.Content = "Play";
+            startPauseButton.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Assets/Buttons/timer-start-big.png")));
             doneBreakButton.Visibility = Visibility.Collapsed;
             startPauseButton.Visibility = Visibility.Visible;
 
