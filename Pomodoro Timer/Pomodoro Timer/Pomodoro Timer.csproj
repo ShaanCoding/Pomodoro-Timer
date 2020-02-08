@@ -233,6 +233,9 @@
     <Content Include="Assets\Sounds\alarmSounds\alm_WindUp.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Sounds\alarmSounds\alm_NoneAlarm.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Sounds\workingSounds\bgm_Classroom.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

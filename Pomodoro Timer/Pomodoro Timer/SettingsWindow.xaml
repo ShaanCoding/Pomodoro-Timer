@@ -35,6 +35,7 @@
 
         <Label Content="Alarm" Grid.Row="1" Grid.Column="1" Foreground="#FFFF4F4F" FontSize="16" FontWeight="Bold" FontFamily="Calibri"></Label>
         <UniformGrid x:Name="alarmSoundsPanel" Grid.Row="1" Grid.Column="1" Columns="4" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,26.5,0,14">
+            <RadioButton x:Name="NoneAlarm" GroupName="alarmSounds" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="AlarmBeep" GroupName="alarmSounds" Content="Alarm Beep" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Beeps" GroupName="alarmSounds" Content="Beeps" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Bell1" GroupName="alarmSounds" Content="Bell 1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -65,12 +66,12 @@
 
         <Label Content="Background Noise" Grid.Row="2" Grid.Column="1" Foreground="#FFFF4F4F" FontSize="16" FontWeight="Bold" FontFamily="Calibri"></Label>
         <UniformGrid Name="workingSoundsPanel" Grid.Row="2" Grid.Column="1" Columns="4" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,29,0,18.5">
+            <RadioButton x:Name="Mute" GroupName="workingSounds" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Classroom" GroupName="workingSounds" Content="Classroom" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="CofficeShop" GroupName="workingSounds" Content="Coffee Shop" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="FastTicking" GroupName="workingSounds" Content="Fast Ticking" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="FireBurning" GroupName="workingSounds" Content="Fire Burning" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Library" GroupName="workingSounds" Content="Library" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <RadioButton x:Name="Mute" GroupName="workingSounds" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="OceanShore" GroupName="workingSounds" Content="Ocean Shore" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Rain" GroupName="workingSounds" Content="Rain" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <RadioButton x:Name="Stream" GroupName="workingSounds" Content="Stream" HorizontalAlignment="Left" VerticalAlignment="Top"/>
