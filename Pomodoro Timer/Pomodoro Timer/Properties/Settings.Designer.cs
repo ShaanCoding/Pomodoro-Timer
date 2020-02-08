@@ -73,7 +73,7 @@ namespace Pomodoro_Timer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("train.mp3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Mute")]
         public string workingSounds {
             get {
                 return ((string)(this["workingSounds"]));
@@ -85,7 +85,7 @@ namespace Pomodoro_Timer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fan.mp3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("NoneAlarm")]
         public string alarmSounds {
             get {
                 return ((string)(this["alarmSounds"]));

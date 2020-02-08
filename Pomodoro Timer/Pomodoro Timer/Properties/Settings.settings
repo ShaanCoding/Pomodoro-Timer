@@ -15,10 +15,10 @@
       <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="workingSounds" Type="System.String" Scope="User">
-      <Value Profile="(Default)">train.mp3</Value>
+      <Value Profile="(Default)">Mute</Value>
     </Setting>
     <Setting Name="alarmSounds" Type="System.String" Scope="User">
-      <Value Profile="(Default)">fan.mp3</Value>
+      <Value Profile="(Default)">NoneAlarm</Value>
     </Setting>
   </Settings>
 </SettingsFile>
